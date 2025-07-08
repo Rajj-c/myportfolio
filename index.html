@@ -1271,7 +1271,7 @@
         
         let years = now.getFullYear() - birthDate.getFullYear();
         let months = now.getMonth() - birthDate.getMonth();
-     /*   let days = now.getDate() - birthDate.getDate();
+      let days = now.getDate() - birthDate.getDate();
         let hours = now.getHours() - birthDate.getHours();
         let minutes = now.getMinutes() - birthDate.getMinutes();
         let seconds = now.getSeconds() - birthDate.getSeconds();
@@ -1299,7 +1299,7 @@
             const tempDate = new Date(now.getFullYear(), now.getMonth(), 0); // Last day of previous month
             days += tempDate.getDate(); // Add days in previous month
             months--;
-        } */
+        } 
         if (months < 0) {
             months += 12;
             years--;
