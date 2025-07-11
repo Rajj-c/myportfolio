@@ -855,6 +855,20 @@
           </div>
         </div>
 
+                <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+          <div class="h-16 mb-4 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gradient-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-primary-text mb-1"> Inspect Rich Documents with Gemini Multimodality and Multimodal RAG </h3>
+          <p class="text-secondary-text text-sm mb-4">Google</p>
+          <p class="flex-grow mb-4 text-secondary-text"> Gemini’s multimodal capabilities and Retrieval-Augmented Generation (RAG).</p>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500 text-sm">2025</span>
+            <a href="https://www.cloudskillsboost.google/public_profiles/d5b78359-6588-4934-a234-896e474852aa/badges/16914883" target="_blank" class="text-gradient-start hover:text-gradient-end font-medium">View Certificate</a>
+          </div>
+        </div>
         <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
           <div class="h-16 mb-4 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gradient-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1271,42 +1285,14 @@
         
         let years = now.getFullYear() - birthDate.getFullYear();
         let months = now.getMonth() - birthDate.getMonth();
-      let days = now.getDate() - birthDate.getDate();
-        let hours = now.getHours() - birthDate.getHours();
-        let minutes = now.getMinutes() - birthDate.getMinutes();
-        let seconds = now.getSeconds() - birthDate.getSeconds();
-
-        // Adjust negative values
-        if (seconds < 0) {
-            seconds += 60;
-            minutes--;
-        }
-        if (minutes < 0) {
-            minutes += 60;
-            hours--;
-        }
-        if (hours < 0) {
-            hours += 24;
-            // This adjustment for days can be tricky across month boundaries.
-            // A more robust approach involves converting dates to total milliseconds or days
-            // and then reconstructing. For simplicity and given the user's
-            // requirement of displaying "days", this can lead to approximate days
-            // if crossing month boundaries where the start day is larger than current month's max day.
-            // However, since we're just subtracting from current 'days' here, it's fine.
-            days--; 
-        }
-        if (days < 0) {
-            const tempDate = new Date(now.getFullYear(), now.getMonth(), 0); // Last day of previous month
-            days += tempDate.getDate(); // Add days in previous month
-            months--;
-        } 
-        if (months < 0) {
-            months += 12;
+        
+        // Adjust for months if current month is before birth month, or if it's the same month but the day is earlier
+        if (months < 0 || (months === 0 && now.getDate() < birthDate.getDate())) {
             years--;
+            months += 12; // Add 12 months to compensate for the year decrement
         }
-
-        liveAgeSpan.textContent = `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-            
+        
+        liveAgeSpan.textContent = `${years} years, ${months} months`;
       }
 
       // Update age every second
