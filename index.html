@@ -13,37 +13,36 @@
   <style id="app-style">
     /* CSS Variables for Theme */
     :root {
-      /* Dark Mode (Default) */
-      --primary-bg: #111827; /* Dark Black/Navy */
-      --secondary-bg: #1F2937; /* Slightly lighter dark gray for cards */
-      --primary-text: #F9FAFB; /* Light Gray / Off-White */
-      --secondary-text: #E2E8F0; /* Muted Light Gray */
-      --accent-orange: #FF6600; /* Vibrant Orange */
-      --accent-gold: #FFD700; /* Gold */
-      --gradient-start: var(--accent-orange);
-      --gradient-end: var(--accent-gold);
-      --nav-link-color: #94A3B8; /* Muted Gray for navigation links */
-      --nav-link-hover: var(--accent-orange);
-      --card-border-color: rgba(71, 85, 105, 0.3);
-      --shadow-color-dark: rgba(0, 0, 0, 0.4);
-      --shadow-color-light: rgba(255, 102, 0, 0.2);
-      --heart-color: var(--accent-orange); /* Heart color for dark mode */
+      /* Default Mode (Dark - Rich Black/Deep Purple) */
+      --primary-bg: #1A202C; /* Deep Rich Black/Purple */
+      --secondary-bg: #2D3748; /* Slightly lighter for cards */
+      --primary-text: #E2E8F0; /* Off-white for readability */
+      --secondary-text: #A0AEC0; /* Muted gray for secondary text */
+      --accent-color: #63B3ED; /* Soft Blue - professional accent */
+      --gradient-start: #63B3ED; /* Soft Blue for gradient start */
+      --gradient-end: #4299E1; /* Slightly darker blue for gradient end */
+      --nav-link-color: #B0B0B0;
+      --nav-link-hover: var(--accent-color);
+      --card-border-color: rgba(99, 179, 237, 0.3); /* Soft Blue border */
+      --shadow-color-dark: rgba(0, 0, 0, 0.6);
+      --shadow-color-light: rgba(99, 179, 237, 0.4); /* Soft Blue shadow */
+      --heart-color: #EF4444; /* Classic Red for hearts */
     }
 
-    .blue-mode { /* Renamed from light-mode */
-      --primary-bg: #000000; /* Black background */
-      --secondary-bg: #0A0A0A; /* Slightly lighter black for cards */
-      --primary-text: #E0E0E0; /* Light gray for primary text */
-      --secondary-text: #B0B0B0; /* Medium gray for secondary text */
-      --accent-blue: #007bff; /* Vibrant Blue */
-      --gradient-start: var(--accent-blue);
-      --gradient-end: #00C6FF; /* Brighter blue for gradient end */
-      --nav-link-color: #94A3B8; /* Muted Light Gray for navigation links */
-      --nav-link-hover: var(--accent-blue);
-      --card-border-color: rgba(0, 123, 255, 0.4); /* Blue border color */
-      --shadow-color-dark: rgba(0, 0, 0, 0.6);
-      --shadow-color-light: rgba(0, 123, 255, 0.4); /* Blue shadow */
-      --heart-color: var(--accent-blue); /* Heart color for blue mode */
+    .blush-mode { /* Light Mode (Soft Lavender/Teal Accent) */
+      --primary-bg: #F7FAFC; /* Very light gray */
+      --secondary-bg: #EDF2F7; /* Light gray for cards */
+      --primary-text: #2D3748; /* Dark slate blue for primary text */
+      --secondary-text: #4A5568; /* Muted dark gray for secondary text */
+      --accent-color: #38B2AC; /* Teal - professional accent for light mode */
+      --gradient-start: #38B2AC; /* Teal for gradient start */
+      --gradient-end: #4FD1C5; /* Lighter Teal for gradient end */
+      --nav-link-color: #4A5568;
+      --nav-link-hover: var(--accent-color);
+      --card-border-color: rgba(56, 178, 172, 0.4); /* Teal border */
+      --shadow-color-dark: rgba(0, 0, 0, 0.15);
+      --shadow-color-light: rgba(56, 178, 172, 0.3); /* Teal shadow */
+      --heart-color: #EF4444; /* Classic Red for hearts */
     }
 
     html {
@@ -185,11 +184,14 @@
     .mobile-menu {
       transform: translateY(-100%);
       transition: transform 0.3s ease-in-out;
-      background-color: rgba(17, 24, 39, 0.95); /* Adjusted for dark mode */
+      background-color: rgba(26, 26, 46, 0.95); /* Adjusted for dark mode */
     }
-    .blue-mode .mobile-menu { /* Changed from light-mode */
-      background-color: rgba(0, 0, 0, 0.95); /* Adjusted for blue mode */
+    .blush-mode .mobile-menu { /* Changed from blue-mode */
+      background-color: rgba(240, 242, 245, 0.95); /* Adjusted for blush mode */
       color: var(--primary-text);
+    }
+    .mobile-menu a {
+        color: var(--secondary-text);
     }
     .mobile-menu.active {
       transform: translateY(0);
@@ -218,11 +220,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(17, 24, 39, 0.7); /* Dark overlay */
+      background-color: rgba(26, 26, 46, 0.7); /* Dark overlay */
       z-index: -1;
     }
-    .blue-mode #home::before { /* Changed from light-mode */
-      background-color: rgba(0, 0, 0, 0.7); /* Blue mode overlay */
+    .blush-mode #home::before { /* Changed from blue-mode */
+      background-color: rgba(240, 242, 245, 0.7); /* Blush mode overlay */
     }
 
     /* Add a fading effect at the bottom of the home section */
@@ -254,11 +256,11 @@
     section:nth-of-type(even) { /* Alternate section background */
         background-color: var(--secondary-bg);
     }
-    .blue-mode section:nth-of-type(even) { /* Changed from light-mode */
+    .blush-mode section:nth-of-type(even) { /* Changed from blue-mode */
         background-color: var(--secondary-bg);
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       section {
         padding-top: 5rem;
         padding-bottom: 5rem;
@@ -413,13 +415,24 @@
     }
 
     /* Keyframes for the ring animation */
-    @keyframes rotateRing {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes rotateCircle1 {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateCircle2 {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+    }
+
+    @keyframes pulseOpacity {
+        0% { opacity: 0.7; }
+        50% { opacity: 0.9; }
+        100% { opacity: 0.7; }
     }
 
     .animated-outer-ring {
-      animation: rotateRing 10s linear infinite;
+      animation: rotateCircle1 10s linear infinite;
       transform-origin: center center;
     }
 
@@ -492,6 +505,83 @@
       animation: flameGlow 1.5s ease-in-out infinite alternate;
       transform-origin: center bottom;
     }
+
+    /* About Me Profile Image and Animated Background */
+    .profile-image-container {
+        position: relative;
+        width: 300px; /* Adjust size as needed */
+        height: 300px;
+        margin: 0 auto 2rem auto; /* Center horizontally and add bottom margin */
+        border-radius: 50%;
+        overflow: hidden; /* Hide parts of SVG outside the circle */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        flex-shrink: 0; /* Prevent image from shrinking */
+    }
+
+    .profile-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        position: relative;
+        z-index: 10;
+    }
+
+    .profile-animated-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+    }
+
+    .profile-animated-bg .circle1 {
+        animation: rotateCircle1 20s linear infinite;
+        transform-origin: center center;
+        fill: var(--gradient-start);
+        opacity: 0.6;
+    }
+
+    .profile-animated-bg .circle2 {
+        animation: rotateCircle2 15s linear infinite;
+        transform-origin: center center;
+        fill: var(--gradient-end);
+        opacity: 0.5;
+    }
+
+    .profile-animated-bg .circle3 {
+        animation: pulseOpacity 3s ease-in-out infinite alternate;
+        fill: var(--accent-color);
+        opacity: 0.8;
+    }
+
+    /* Adjust about section layout for desktop */
+    #about .container .flex-col.md\:flex-row {
+        flex-direction: column; /* Stack vertically by default */
+        align-items: center; /* Center items horizontally */
+    }
+
+    @media (min-width: 768px) {
+        #about .container .flex-col.md\:flex-row {
+            flex-direction: column; /* Keep as column on desktop */
+            align-items: center; /* Align items to the top */
+        }
+        #about .md\:w-1\/2 {
+            width: 100%; /* Make both children take full width */
+            margin-left: 0; /* Remove previous left/right margins */
+            margin-right: 0;
+        }
+        #about .md\:w-1\/2:first-child { /* Profile Image Container */
+            margin-bottom: 2rem; /* Add space below the image */
+        }
+        #about .md\:w-1\/2:last-child { /* Text content and other cards container */
+            /* No extra margins needed here, as the parent is now a column and aligns its children */
+        }
+    }
   </style>
 </head>
 <body class="bg-dark-bg text-gray-200">
@@ -554,8 +644,21 @@
       </h2>
 
       <div class="flex flex-col md:flex-row items-center md:space-x-12">
-        <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
-          <p class="leading-relaxed mb-4 text-secondary-text">
+        <!-- Profile Image and Animated Background (Left side on desktop) -->
+        <div class="md:w-1/2 mb-8 md:mb-0 flex justify-center" data-aos="fade-right">
+          <div class="profile-image-container">
+            <img src="profile.jpg" alt="Rajeswar Charapalli Profile" class="relative z-10">
+            <svg class="profile-animated-bg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="150" cy="150" r="140" class="circle1"></circle>
+                <circle cx="150" cy="150" r="110" class="circle2"></circle>
+                <circle cx="150" cy="150" r="80" class="circle3"></circle>
+            </svg>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex flex-col space-y-8" data-aos="fade-left">
+          <!-- Bio Text -->
+          <p class="leading-relaxed text-secondary-text">
             I'm a passionate and curious Computer Science student with a strong interest in Generative AI, Web Development, Deep Learning, and Natural Language Processing. I’m currently focused on exploring Google’s Generative AI tools, building practical projects using Python for web development, and deepening my understanding of Operating Systems, Software Engineering, and Design and Analysis of Algorithms.
           </p>
           <p class="leading-relaxed mb-4 text-secondary-text">
@@ -713,9 +816,9 @@
             <h3 class="text-xl font-semibold text-primary-text mb-2 project-title">CGPA & SGPA Calculator</h3>
             <p class="text-secondary-text mb-4 project-description">A web-based calculator to compute CGPA and SGPA based on academic grades, built with fundamental web technologies.</p>
             <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-xs font-medium shadow-sm">HTML</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-xs font-medium shadow-sm">CSS</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-xs font-medium shadow-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-sm font-medium shadow-sm">HTML</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-sm font-medium shadow-sm">CSS</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-gradient-start to-gradient-end text-white rounded-full text-sm font-medium shadow-sm">JavaScript</span>
             </div>
             <div class="mt-4 flex justify-between items-center">
               <a href="https://rajeshwar234.github.io/CGPA-SGPA-calculator/" target="_blank" class="text-gradient-start hover:text-gradient-end font-medium inline-flex items-center">
@@ -733,7 +836,7 @@
       <div class="mt-12 text-center" data-aos="fade-up">
         <a href="javascript:void(0)" class="btn-secondary inline-flex items-center py-3 px-6 rounded-lg shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.115 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
           </svg>
           Will Build More
         </a>
@@ -762,7 +865,7 @@
         <div class="skill-card p-6 rounded-lg shadow-sm" data-aos="zoom-in" data-aos-delay="200">
           <div class="text-gradient-start mb-4">
             <svg class="h-12 w-12" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
+              <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34.11-.31.17-.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
             </svg>
           </div>
           <h3 class="text-lg font-medium text-primary-text mb-2">Python</h3>
@@ -839,7 +942,7 @@
         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-gradient-start to-gradient-end rounded-full shadow-md shadow-orange-500/40"></div>
       </h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="100">
           <div class="h-16 mb-4 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gradient-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -855,18 +958,19 @@
           </div>
         </div>
 
-                <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+        <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
           <div class="h-16 mb-4 flex items-center justify-center">
-<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gradient-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-  <polyline points="14 2 14 8 20 8"></polyline>
-  <circle cx="11.5" cy="14.5" r="3.5"></circle>
-  <line x1="14" y1="17" x2="16.5" y2="19.5"></line>
-</svg>
+            <!-- New SVG for Inspect Rich Documents -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gradient-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <circle cx="11.5" cy="14.5" r="3.5"></circle>
+              <line x1="14" y1="17" x2="16.5" y2="19.5"></line>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary-text mb-1"> Inspect Rich Documents with Gemini Multimodality and Multimodal RAG </h3>
+          <h3 class="text-xl font-semibold text-primary-text mb-1">Inspect Rich Documents with Gemini Multimodality and Multimodal RAG</h3>
           <p class="text-secondary-text text-sm mb-4">Google</p>
-          <p class="flex-grow mb-4 text-secondary-text"> Gemini’s multimodal capabilities and Retrieval-Augmented Generation (RAG).</p>
+          <p class="flex-grow mb-4 text-secondary-text">Gemini’s multimodal capabilities and Retrieval-Augmented Generation (RAG).</p>
           <div class="flex justify-between items-center">
             <span class="text-gray-500 text-sm">2025</span>
             <a href="https://www.cloudskillsboost.google/public_profiles/d5b78359-6588-4934-a234-896e474852aa/badges/16914883" target="_blank" class="text-gradient-start hover:text-gradient-end font-medium">View Certificate</a>
@@ -905,16 +1009,11 @@
         <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="400">
           <div class="h-16 mb-4 flex items-center justify-center">
             <svg class="h-12 w-12 text-gradient-start" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
+              <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-primary-text mb-1">Python Bootcamp</h3>
-          <p class="text-secondary-text text-sm mb-4">Lets Upgrade</p>
-          <p class="flex-grow mb-4 text-secondary-text">Comprehensive training in Python programming fundamentals and advanced topics.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-500 text-sm">2025</span>
-            <a href="https://drive.google.com/file/d/14SjurUCc-bEysPcIqt29FBnmmHKTOLq7/view" target="_blank" class="text-gradient-start hover:text-gradient-end font-medium">View Certificate</a>
-          </div>
+          <h3 class="text-lg font-medium text-primary-text mb-1">Python Bootcamp</h3>
+          <p class="text-secondary-text text-sm">Beginner level, Learning for Web Development</p>
         </div>
 
         <div class="card rounded-xl shadow-md p-6 flex flex-col" data-aos="fade-up" data-aos-delay="500">
@@ -1082,6 +1181,14 @@
       </div>
       
       <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <!-- Signature Placeholder -->
+        <div class="flex justify-center mb-4">
+          <svg width="200" height="70" viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-primary-text">
+            <!-- PASTE YOUR ACTUAL SIGNATURE SVG PATH DATA HERE -->
+            <path d="M10 35 C 40 10, 80 60, 110 35 S 150 10, 180 35" stroke="currentColor" stroke-width="2" fill="none"/>
+            <text x="100" y="55" font-family="cursive" font-size="20" fill="currentColor" text-anchor="middle">Rajeswar</text>
+          </svg>
+        </div>
         <p class="text-secondary-text">© 2025 Rajeswar Charapalli. All rights reserved.</p>
       </div>
     </div>
@@ -1107,8 +1214,7 @@
             'secondary-bg': 'var(--secondary-bg)',
             'primary-text': 'var(--primary-text)',
             'secondary-text': 'var(--secondary-text)',
-            'accent-orange': 'var(--accent-orange)', /* Kept for dark mode fallback if needed */
-            'accent-gold': 'var(--accent-gold)', /* Kept for dark mode fallback if needed */
+            'accent-color': 'var(--accent-color)', /* New accent color variable */
             'gradient-start': 'var(--gradient-start)',
             'gradient-end': 'var(--gradient-end)',
             'heart-color': 'var(--heart-color)',
@@ -1122,13 +1228,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize AOS without 'once: true' so animations replay on scroll up/down
       AOS.init({
         duration: 800,
-        // Removed 'once: true' to allow animations to trigger multiple times
       });
 
-      // Contact form submit handler
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
@@ -1151,7 +1254,6 @@
         });
       }
 
-      // Back to Top Button
       const backToTopBtn = document.getElementById('backToTopBtn');
       
       window.addEventListener('scroll', function() {
@@ -1169,7 +1271,6 @@
         });
       });
 
-      // Animated Tagline Logic with TypeIt.js
       const taglines = [
         "Web Developer",
         "CSE Student",
@@ -1181,8 +1282,8 @@
 
       new TypeIt("#animated-tagline", {
         strings: taglines,
-        speed: 25, /* Made faster */
-        deleteSpeed: 50, /* Made faster */
+        speed: 25,
+        deleteSpeed: 50,
         breakLines: false,
         loop: true,
         waitUntilVisible: true,
@@ -1191,18 +1292,15 @@
         lifeLike: true,
       }).go();
 
-      // Theme Switcher Logic
       const modeSwitchBtn = document.getElementById('modeSwitchBtn');
       const modeIcon = document.getElementById('modeIcon');
       const body = document.body;
 
-      // Function to set theme
       function setTheme(theme) {
-        // Remove existing theme classes
-        body.classList.remove('dark-mode', 'blue-mode'); 
+        body.classList.remove('dark-mode', 'blush-mode'); 
 
-        if (theme === 'blue-mode') {
-          body.classList.add('blue-mode');
+        if (theme === 'blush-mode') {
+          body.classList.add('blush-mode');
           modeIcon.classList.remove('fa-sun');
           modeIcon.classList.add('fa-moon');
         } else { // Default to dark-mode
@@ -1213,43 +1311,37 @@
         localStorage.setItem('theme', theme);
       }
 
-      // Check for saved theme preference on load
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
         setTheme(savedTheme);
       } else {
-        // Default to dark mode if no preference saved
         setTheme('dark-mode');
       }
 
       modeSwitchBtn.addEventListener('click', function() {
-        if (body.classList.contains('blue-mode')) {
-            setTheme('dark-mode'); // Switch from blue to dark
+        if (body.classList.contains('blush-mode')) {
+            setTheme('dark-mode'); 
         } else {
-            setTheme('blue-mode'); // Switch from dark to blue
+            setTheme('blush-mode'); 
         }
       });
 
-
-      // Interactive Heart Animation Logic
       let lastHeartTime = 0;
-      const heartCreationInterval = 100; // milliseconds - Controls how frequently hearts appear
+      const heartCreationInterval = 100; 
 
       function createHeart(x, y) {
         const heart = document.createElement('span');
         heart.classList.add('heart-effect');
         heart.style.left = `${x}px`;
         heart.style.top = `${y}px`;
-        heart.textContent = ''; // Using an emoji for simplicity and broad support
+        heart.textContent = '❤️'; 
         document.body.appendChild(heart);
 
-        // Remove the heart after its animation completes
         heart.addEventListener('animationend', () => {
           heart.remove();
         });
       }
 
-      // Mousemove event for desktop - applies to the entire document
       document.addEventListener('mousemove', (e) => {
         const currentTime = Date.now();
         if (currentTime - lastHeartTime > heartCreationInterval) {
@@ -1258,9 +1350,7 @@
         }
       });
 
-      // Touch events for mobile - applies to the entire document
       document.addEventListener('touchstart', (e) => {
-        // Create a heart at each touch point
         for (let i = 0; i < e.touches.length; i++) {
           const touch = e.touches[i];
           createHeart(touch.clientX, touch.clientY);
@@ -1269,7 +1359,6 @@
 
       document.addEventListener('touchmove', (e) => {
         const currentTime = Date.now();
-        // Limit heart creation on touchmove to avoid excessive elements
         if (currentTime - lastHeartTime > heartCreationInterval) {
           for (let i = 0; i < e.touches.length; i++) {
             const touch = e.touches[i];
@@ -1280,7 +1369,7 @@
       });
 
       // Live Age Calculation
-      const birthDate = new Date('2005-04-23T12:30:00'); // April 23, 2005, 12:30 PM
+      const birthDate = new Date('2005-04-23T12:30:00'); 
       const liveAgeSpan = document.getElementById('live-age');
 
       function updateLiveAge() {
@@ -1289,20 +1378,18 @@
         let years = now.getFullYear() - birthDate.getFullYear();
         let months = now.getMonth() - birthDate.getMonth();
         
-        // Adjust for months if current month is before birth month, or if it's the same month but the day is earlier
         if (months < 0 || (months === 0 && now.getDate() < birthDate.getDate())) {
             years--;
-            months += 12; // Add 12 months to compensate for the year decrement
+            months += 12; 
         }
         
         liveAgeSpan.textContent = `${years} years, ${months} months`;
       }
 
-      // Update age every second
       setInterval(updateLiveAge, 1000);
-      // Initial call to display age immediately
       updateLiveAge();
     });
+    
   </script>
 </body>
 </html>
