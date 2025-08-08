@@ -1,49 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loved That You Opened It</title>
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Define a simple keyframe animation for the text */
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        .animate-fadeInScale {
-            animation: fadeInScale 1s ease-out forwards;
-        }
-        /* Custom font import from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to My New Digital Home 💫</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        height: 100%;
+        overflow: hidden;
+        background: #0d1117;
+        color: #fff;
+    }
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        animation: fadeInDown 1.5s ease-in-out;
+    }
+    p {
+        font-size: 1.2rem;
+        max-width: 650px;
+        opacity: 0.9;
+        animation: fadeInUp 2s ease-in-out;
+        line-height: 1.6;
+    }
+    a {
+        margin-top: 2rem;
+        text-decoration: none;
+        background: #fff;
+        color: #0d1117;
+        padding: 0.9rem 2rem;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: transform 0.3s ease, background 0.3s ease;
+        animation: fadeIn 2.5s ease-in-out;
+    }
+    a:hover {
+        background: #ffcb05;
+        transform: scale(1.05);
+    }
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+        color: rgba(255, 255, 255, 0.6);
+        user-select: none;
+    }
+    @keyframes float {
+        0% {transform: translateY(100vh) scale(0.8); opacity: 0;}
+        10% {opacity: 1;}
+        100% {transform: translateY(-10vh) scale(1.2); opacity: 0;}
+    }
+    .sparkle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        animation: sparkleAnim 4s linear infinite;
+    }
+    @keyframes sparkleAnim {
+        0% {transform: translateY(100vh) scale(0.5); opacity: 0;}
+        20% {opacity: 1;}
+        100% {transform: translateY(-10vh) scale(1); opacity: 0;}
+    }
+</style>
 </head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
-    <div class="bg-gray-800 p-8 md:p-12 rounded-3xl shadow-2xl text-center max-w-xl mx-auto border-4 border-purple-500 animate-fadeInScale">
-        <!-- Main title with an engaging message -->
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 text-purple-400">
-            Hey, so glad you're here!
-        </h1>
-        
-        <!-- The core message about the new domain -->
-        <p class="text-lg md:text-xl text-gray-300 mb-8">
-            My little corner of the internet has moved, and I'd be so happy if you joined me there.
-        </p>
+<body>
+<h1>💌 Hey, You Found Me!</h1>
+<h2> !!! Raj moved from here !!!</h2>
+<p>Like a love letter sealed with a smile, Raj now own his very own space on the web — <strong>rajeswar.tech</strong> ✨<br>
+Just followup nd visit new page 🤍</p>
+<a href="https://rajeswar.tech" target="_blank">Step Into Raj's Portfolio 🚪</a>
 
-        <!-- Call to action button with a placeholder link -->
-        <a href="https://rajeswar.tech" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-            Please click here to follow up
-        </a>
-    </div>
+<script>
+// Floating hearts
+for(let i=0; i<15; i++) {
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+    document.body.appendChild(heart);
+}
+// Sparkles
+for(let i=0; i<30; i++) {
+    let sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    document.body.appendChild(sparkle);
+}
+</script>
 </body>
 </html>
